@@ -4597,7 +4597,9 @@ bool Layer::getMemoryShapes(const std::vector<MatShape> &inputs,
                             std::vector<MatShape> &outputs,
                             std::vector<MatShape> &internals) const
 {
-    CV_Assert(inputs.size());
+//    CV_Assert(inputs.size());
+    if (!inputs.size())
+        CV_Error(Error::StsObjectNotFound, "no inputs for \"" + name + "\"");
     outputs.assign(std::max(requiredOutputs, (int)inputs.size()), inputs[0]);
     return false;
 }
